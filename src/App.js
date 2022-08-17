@@ -127,6 +127,7 @@ const App = () => {
 			);
 		}
 		if (resColor5.length !== 0) {
+			console.log("resColor5", resColor5);
 			setDominantColor5(
 				normal(
 					resColor1[0],
@@ -220,7 +221,7 @@ const App = () => {
 				<div>
 					<p>Test image 5</p>
 					<div
-						id="canvas4"
+						id="canvas5"
 						className="relative border border-teal-400 h-[450px] w-[320px]"
 					>
 						<img
@@ -233,7 +234,7 @@ const App = () => {
 			</div>
 
 			{testImage1 && (
-				<div className="p-4">
+				<div className="p-4 hidden">
 					Extract color area (dont mind it.)
 					<ColorExtractor
 						src={testImage1}
