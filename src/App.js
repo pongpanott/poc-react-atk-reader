@@ -6,6 +6,7 @@ import { ColorExtractor } from "react-color-extractor";
 import { normal } from "color-blend";
 import Button from "./components/button";
 import Masking from "./components/masking";
+import DominantColor from "./components/dominant-color";
 
 const App = () => {
 	const webcamRef = React.useRef(null);
@@ -127,7 +128,6 @@ const App = () => {
 			);
 		}
 		if (resColor5.length !== 0) {
-			console.log("resColor5", resColor5);
 			setDominantColor5(
 				normal(
 					resColor1[0],
@@ -340,91 +340,11 @@ const App = () => {
 			)}
 
 			<div className="flex flex-wrap gap-x-2">
-				<div>
-					Dominante Color 1
-					{dominantColor1 && (
-						<>
-							<div
-								style={{
-									backgroundColor: `rgba(${dominantColor1.r},${dominantColor1.g},${dominantColor1.b},${dominantColor1.a})`,
-									width: 200,
-									height: 200,
-								}}
-							/>
-							<p>
-								{`rgb: ${dominantColor1.r}, ${dominantColor1.g}, ${dominantColor1.b}`}
-							</p>
-						</>
-					)}
-				</div>
-				<div>
-					Dominante Color 2
-					{dominantColor2 && (
-						<>
-							<div
-								style={{
-									backgroundColor: `rgba(${dominantColor2.r},${dominantColor2.g},${dominantColor2.b},${dominantColor2.a})`,
-									width: 200,
-									height: 200,
-								}}
-							/>
-							<p>
-								{`rgb: ${dominantColor2.r}, ${dominantColor2.g}, ${dominantColor2.b}`}
-							</p>
-						</>
-					)}
-				</div>
-				<div>
-					Dominante Color 3
-					{dominantColor3 && (
-						<>
-							<div
-								style={{
-									backgroundColor: `rgba(${dominantColor3.r},${dominantColor3.g},${dominantColor3.b},${dominantColor3.a})`,
-									width: 200,
-									height: 200,
-								}}
-							/>
-							<p>
-								{`rgb: ${dominantColor3.r}, ${dominantColor3.g}, ${dominantColor3.b}`}
-							</p>
-						</>
-					)}
-				</div>
-				<div>
-					Dominante Color 4
-					{dominantColor4 && (
-						<>
-							<div
-								style={{
-									backgroundColor: `rgba(${dominantColor4.r},${dominantColor4.g},${dominantColor4.b},${dominantColor4.a})`,
-									width: 200,
-									height: 200,
-								}}
-							/>
-							<p>
-								{`rgb: ${dominantColor4.r}, ${dominantColor4.g}, ${dominantColor4.b}`}
-							</p>
-						</>
-					)}
-				</div>
-				<div>
-					Dominante Color 5
-					{dominantColor5 && (
-						<>
-							<div
-								style={{
-									backgroundColor: `rgba(${dominantColor5.r},${dominantColor5.g},${dominantColor5.b},${dominantColor5.a})`,
-									width: 200,
-									height: 200,
-								}}
-							/>
-							<p>
-								{`rgb: ${dominantColor5.r}, ${dominantColor5.g}, ${dominantColor5.b}`}
-							</p>
-						</>
-					)}
-				</div>
+				<DominantColor color={dominantColor1} title="Dominant Color 1" />
+				<DominantColor color={dominantColor2} title="Dominant Color 1" />
+				<DominantColor color={dominantColor3} title="Dominant Color 1" />
+				<DominantColor color={dominantColor4} title="Dominant Color 1" />
+				<DominantColor color={dominantColor5} title="Dominant Color 1" />
 			</div>
 		</>
 	);
