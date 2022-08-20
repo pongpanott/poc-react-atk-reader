@@ -2,7 +2,6 @@ import React from "react";
 
 const DominantColor = (props) => {
 	const { color, title } = props;
-	console.log("color", color);
 	return (
 		<div>
 			{title}
