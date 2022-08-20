@@ -4,9 +4,9 @@ import Webcam from "react-webcam";
 import * as htmlToImage from "html-to-image";
 import { ColorExtractor } from "react-color-extractor";
 import { normal } from "color-blend";
-import Button from "./components/button";
 import Masking from "./components/masking";
 import DominantColor from "./components/dominant-color";
+import Sampling from "./components/sampling";
 
 const App = () => {
 	const webcamRef = React.useRef(null);
@@ -29,8 +29,8 @@ const App = () => {
 
 	const capture = React.useCallback(() => {
 		const imageSrc = webcamRef.current.getScreenshot({
-			width: 320,
-			height: 450,
+			width: 640,
+			height: 480,
 		});
 		setImgSrc(imageSrc);
 	}, [webcamRef, setImgSrc]);
@@ -143,93 +143,73 @@ const App = () => {
 
 	return (
 		<>
-			<div className="w-[600px] mx-auto p-4 border">
-				<div className="relative w-[320px] h-[450px] mb-2 mx-auto">
-					<Webcam
-						audio={false}
-						ref={webcamRef}
-						screenshotFormat="image/jpeg"
-						videoConstraints={{ width: 320, height: 450 }}
-					/>
-					<Masking />
-				</div>
-				<Button onClick={() => capture()} />
-				<div className="p-4" style={{ marginTop: 100, columnGap: 16 }}>
-					<p>preview image</p>
-					{imgSrc && (
-						<div className="border border-blue-500 relative w-fit">
-							<img src={imgSrc} className="h-[450px] w-[320px]" />
-							<Masking />
-						</div>
-					)}
-				</div>
+			<div className="w-fit mx-auto relative">
+				<Webcam
+					audio={false}
+					ref={webcamRef}
+					screenshotFormat="image/jpeg"
+					screenshotQuality={1}
+					mirrored
+				/>
+				<Masking />
+			</div>
+			<button
+				className="px-2 h-9 flex items-center rounded-lg bg-blue-200 mt-4 mx-auto"
+				onClick={capture}
+			>
+				Capture
+			</button>
+
+			<div className="p-4 mt-4 w-fit mx-auto">
+				<p>preview image</p>
+				{imgSrc && (
+					<div className="relative w-fit">
+						<img src={imgSrc} />
+						<Masking />
+					</div>
+				)}
 			</div>
 
-			<div className="p-4 flex flex-wrap gap-x-2">
+			<div className="relative p-4 flex flex-wrap gap-2">
 				<div>
 					<p>Test image 1</p>
-					<div
+					<Sampling
 						id="canvas1"
-						className="relative border border-teal-400 h-[450px] w-[320px]"
-					>
-						<img
-							src={imgSrc}
-							className="h-[450px] w-[320px] absolute"
-							style={{ clip: "rect(193px, 162px, 200px, 144px)" }}
-						/>
-					</div>
+						src={imgSrc}
+						style={{ clip: "rect(210px, 330px, 219px, 307px)" }}
+					/>
 				</div>
 				<div>
 					<p>Test image 2</p>
-					<div
+					<Sampling
 						id="canvas2"
-						className="relative border border-teal-400 h-[450px] w-[320px]"
-					>
-						<img
-							src={imgSrc}
-							className="h-[450px] w-[320px] absolute"
-							style={{ clip: "rect(208px, 162px, 215px, 144px)" }}
-						/>
-					</div>
+						src={imgSrc}
+						style={{ clip: "rect(225px, 330px, 234px, 307px)" }}
+					/>
 				</div>
 				<div>
 					<p>Test image 3</p>
-					<div
+					<Sampling
 						id="canvas3"
-						className="relative border border-teal-400 h-[450px] w-[320px]"
-					>
-						<img
-							src={imgSrc}
-							className="h-[450px] w-[320px] absolute"
-							style={{ clip: "rect(218px, 162px, 225px, 144px)" }}
-						/>
-					</div>
+						src={imgSrc}
+						style={{ clip: "rect(238px, 330px, 247px, 307px)" }}
+					/>
 				</div>
 				<div>
 					<p>Test image 4</p>
-					<div
+					<Sampling
 						id="canvas4"
-						className="relative border border-teal-400 h-[450px] w-[320px]"
-					>
-						<img
-							src={imgSrc}
-							className="h-[450px] w-[320px] absolute"
-							style={{ clip: "rect(229px, 162px, 236px, 144px)" }}
-						/>
-					</div>
+						src={imgSrc}
+						style={{ clip: "rect(253px, 330px, 262px, 307px)" }}
+					/>
 				</div>
 				<div>
 					<p>Test image 5</p>
-					<div
+					<Sampling
 						id="canvas5"
-						className="relative border border-teal-400 h-[450px] w-[320px]"
-					>
-						<img
-							src={imgSrc}
-							className="h-[450px] w-[320px] absolute"
-							style={{ clip: "rect(244px, 162px, 251px, 144px)" }}
-						/>
-					</div>
+						src={imgSrc}
+						style={{ clip: "rect(268px, 330px, 277px, 307px)" }}
+					/>
 				</div>
 			</div>
 
